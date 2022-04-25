@@ -9,6 +9,10 @@ If yuo are a developer ask for environment variables
 
 ## Using docker compose to build for production 📋
 
+Create a .env in the root with these values
+PORT=3000
+KEY_PRIVATE_JWT=hello12345
+
 Run next command in the folder then use the postman collection to do some tests
 ```bash
 $ docker-compose up               
@@ -36,7 +40,7 @@ $ npm run start:dev
 $ npm run test
 ```
 
-## Estructura del proyecto
+## Folder structure
 
 ```bash
 ├───root-repo
@@ -54,5 +58,6 @@ $ npm run test
 │   ├── .env
 │   ├── .gitignore
 │   ├── .index.js
+│   ├── wait-for-it.sh      //script to wait to be ready database and apply migrations and seeders
 └── └── package.json
 ```
