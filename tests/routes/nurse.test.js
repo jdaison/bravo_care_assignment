@@ -28,17 +28,17 @@ describe('Nurses API', () => {
   it('should update a nurse', async () => {
     const res = await request(app).put('/nurses/1')
       .send({
-        name: 'Hospital one',
+        name: 'Nurse one',
       });
     expect(res.statusCode).toEqual(200);
     expect(res.body).toHaveProperty('nurse');
-    expect(res.body.nurse.name).toEqual('Hospital one');
+    expect(res.body.nurse.name).toEqual('Nurse one');
   });
 
   it('should return an error to creating a nurse with invalid data', async () => {
     const res = await request(app).post('/nurses')
       .send({
-        name: 'Hospital 4',
+        name: 'Nurse 4',
       });
     expect(res.statusCode).toEqual(500);
     // eslint-disable-next-line no-useless-escape

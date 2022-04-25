@@ -11,7 +11,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       hourly_rate: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.DECIMAL(10, 2),
       },
       start_date: {
         type: Sequelize.DATE,

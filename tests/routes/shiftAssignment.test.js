@@ -24,7 +24,7 @@ describe('ShiftAssignments API', () => {
     const res = await request(app).post('/shift-assignments')
       .send({
         start_date: '2020-05-01T13:00:00.000Z',
-        end_date: '2011-05-01T17:00:00.000Z',
+        end_date: '2020-05-01T17:00:00.000Z',
         HospitalId: 1,
         NurseId: 1,
       });

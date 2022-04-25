@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Nurse.init({
     name: DataTypes.STRING,
-    hourly_rate: DataTypes.INTEGER,
+    hourly_rate: DataTypes.DECIMAL(10, 2),
     start_date: DataTypes.DATE,
   }, {
     sequelize,
