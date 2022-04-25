@@ -3,19 +3,19 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class ShifAssignment extends Model {
+  class ShiftAssignments extends Model {
     static associate(models) {
       this.belongsTo(models.Hospital);
       this.belongsTo(models.Nurse);
     }
   }
-  ShifAssignment.init({
+  ShiftAssignments.init({
     start_date: DataTypes.DATE,
     end_date: DataTypes.DATE,
   }, {
     sequelize,
-    modelName: 'ShifAssignment',
+    modelName: 'ShiftAssignment',
   });
 
-  return ShifAssignment;
+  return ShiftAssignments;
 };
