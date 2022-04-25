@@ -3,11 +3,16 @@ module.exports = {
     commonjs: true,
     es2021: true,
     node: true,
+    'jest/globals': true,
   },
+  plugins: ['jest'],
   extends: [
     'airbnb-base',
+    'plugin:jest/recommended',
   ],
   parserOptions: {
-    ecmaVersion: 'latest',
+    ecmaVersion: 12,
+  },
+  rules: {
   },
 };
