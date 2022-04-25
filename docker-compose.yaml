@@ -9,17 +9,25 @@ services:
     ports:
       - '5432:5432'
     volumes: 
-      - db:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data       
   api:
     container_name: bravo_care_api
     build:
       context: ./
-      # target: production
     image: bravo_care_api
     depends_on:
       - db
+    # command: ["./wait-for-it.sh", "db:5432", "--", "npm", "run", "db:create:prod", "npm", "run", start"]
+    command:  >
+      sh -c "./wait-for-it.sh db:5432 && 
+            npm run db:reset &&
+            npm run start" 
+    links:
+      - db    
     ports:
       - 3000:3000
+    environment:
+      - DB_HOST=db
     environment:
       NODE_ENV: production
       DB_HOST: db
@@ -29,8 +37,6 @@ services:
       DB_NAME: postgres
     links:
       - db
-  #   volumes:
-  #     - './:/src'
 volumes:
   db:
-    driver: local
+    driver: local 
