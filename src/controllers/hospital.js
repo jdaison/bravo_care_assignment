@@ -2,17 +2,6 @@ const { Hospital } = require('../../models');
 const validator = require('../utils/validators/hospital');
 
 module.exports = {
-  createHospital: async (req, res) => {
-    try {
-      const hospital = await Hospital.create(req.body);
-      return res.status(201).json({
-        hospital,
-      });
-    } catch (error) {
-      return res.status(500).json({ error: error.message });
-    }
-  },
-
   getAllHospitals: async (req, res) => {
     try {
       const hospitals = await Hospital.findAll();
@@ -56,4 +45,20 @@ module.exports = {
       return res.status(500).send(error.message);
     }
   },
+
+  createHospital: async (req, res) => {
+    try {
+      const result = validator.create(req.body);
+      if (result.error) {
+        throw new Error(result.error);
+      }
+      const hospital = await Hospital.create(req.body);
+      return res.status(201).json({
+        hospital,
+      });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
+
 };

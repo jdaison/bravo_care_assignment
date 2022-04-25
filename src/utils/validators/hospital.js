@@ -8,4 +8,11 @@ module.exports = {
     });
     return schema.validate(data);
   },
+  create: (data) => {
+    const schema = Joi.object({
+      name: Joi.string().min(1).max(200).required(),
+      billing_code: Joi.string().min(1).max(3).required(),
+    });
+    return schema.validate(data);
+  },
 };
