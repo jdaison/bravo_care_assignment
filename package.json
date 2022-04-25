@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint .  --ext .js",
     "lint-fix": "eslint --fix .  --ext .js",
+    "start": "node ./src/app.js",
     "start:dev": "nodemon --watch src ./src/app.js",
     "test": "cross-env NODE_ENV=test jest --forceExit --runInBand --testTimeout=10000",
     "pretest": "cross-env NODE_ENV=test npm run db:reset",

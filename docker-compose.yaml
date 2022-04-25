@@ -11,11 +11,11 @@ services:
     volumes: 
       - db:/var/lib/postgresql/data
   api:
-    container_name: brabo_care_api
+    container_name: bravo_care_api
     build:
       context: ./
       # target: production
-    image: brabo_care_api
+    image: bravo_care_api
     depends_on:
       - db
     ports:
