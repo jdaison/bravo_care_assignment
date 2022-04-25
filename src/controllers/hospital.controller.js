@@ -35,4 +35,20 @@ module.exports = {
       return res.status(500).send(error.message);
     }
   },
+
+  updateHospitalById: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const [updated] = await Hospital.update(req.body, {
+        where: { id },
+      });
+      if (updated) {
+        const updatedHospital = await Hospital.findOne({ where: { id } });
+        return res.status(200).json({ hospital: updatedHospital });
+      }
+      throw new Error('Hospital not found');
+    } catch (error) {
+      return res.status(500).send(error.message);
+    }
+  },
 };
