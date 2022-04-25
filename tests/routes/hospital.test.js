@@ -2,11 +2,28 @@ const request = require('supertest');
 const app = require('../../src/app');
 
 describe('Hospitals API', () => {
-  it('should show all hospitals', async () => {
+  it('should show return an error for invalida authorization', async () => {
     const res = await request(app).get('/hospitals');
-    expect(res.statusCode).toEqual(200);
-    expect(res.body).toHaveProperty('hospitals');
-    expect(res.body.hospitals.length).toEqual(3);
+    expect(res.statusCode).toEqual(401);
+    // eslint-disable-next-line no-useless-escape
+    expect(res.error.text).toEqual('\"Invalid authorization\"');
+  });
+
+  it('should show all hospitals', async () => {
+    const response = await request(app).post('/login').send({
+      user: 'user1',
+      password: 'test1234',
+    });
+    expect(response.statusCode).toEqual(200);
+    expect(response.body.result.value.user).toEqual('user1');
+
+    const result = await request(app)
+      .get('/hospitals')
+      .set({ authorization: `Bearer ${response.body.token}` });
+
+    expect(result.statusCode).toEqual(200);
+    expect(result.body).toHaveProperty('hospitals');
+    expect(result.body.hospitals.length).toEqual(3);
   });
 
   it('should show get a hospital', async () => {

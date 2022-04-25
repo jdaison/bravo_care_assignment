@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 app.use(bodyParser.json());
-app.use(logger('dev'));
+app.use(logger('dev', { skip: (req, res) => process.env.NODE_ENV === 'test'}));
 
 require('./routes')(app);
 

@@ -16,7 +16,7 @@ module.exports = {
         });
 
         if (userExists && bcrypt.compareSync(password, userExists.dataValues.password)) {
-          result.password = undefined;
+          result.value.password = undefined;
           const token = jwt.sign(
             {
               user,

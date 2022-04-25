@@ -19,8 +19,7 @@ module.exports = {
         throw new Error(result.error);
       }
       req.body.password = bcrypt.hashSync(req.body.password);
-      const user = await User.create(req.body)
-      console.log(user.password)
+      const user = await User.create(req.body);
       user.password = '';
 
       return res.status(201).json({
