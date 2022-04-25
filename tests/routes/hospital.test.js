@@ -55,4 +55,9 @@ describe('Hospitals API', () => {
     expect(res.body).toHaveProperty('hospital');
     expect(res.body.hospital.name).toEqual('Hospital 4');
   });
+
+  it('should delete a hospital', async () => {
+    const res = await request(app).delete('/hospitals/4');
+    expect(res.statusCode).toEqual(204);
+  });
 });

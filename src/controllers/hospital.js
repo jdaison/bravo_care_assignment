@@ -61,4 +61,19 @@ module.exports = {
     }
   },
 
+  deleteHospital: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deleted = await Hospital.destroy({
+        where: { id },
+      });
+      if (deleted) {
+        return res.status(204).send('Hospital deleted');
+      }
+      throw new Error('Hospital not found');
+    } catch (error) {
+      return res.status(500).send(error.message);
+    }
+  },
+
 };
