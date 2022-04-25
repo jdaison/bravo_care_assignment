@@ -6,4 +6,5 @@ RUN npm install glob rimraf
 RUN npm install --only=production
 COPY . .
 EXPOSE 3000
+RUN npm runt db:reset:dev
 CMD ["node", "app.js"]
