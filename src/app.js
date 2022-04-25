@@ -11,9 +11,11 @@ app.use(logger('dev'));
 
 require('./routes')(app);
 
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Bravocare API listening on port ${port}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    // eslint-disable-next-line no-console
+    console.log(`Bravocare API listening on port ${port}`);
+  });
+}
 
 module.exports = app;
