@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../src/app');
+const app = require('../../src/app');
 
 describe('Bravocare API', () => {
   it('should show all hospitals', async () => {
@@ -8,7 +8,7 @@ describe('Bravocare API', () => {
     expect(res.body).toHaveProperty('hospitals');
     expect(res.body.hospitals.length).toEqual(3);
   });
-  
+
   it('should show get a hospital', async () => {
     const res = await request(app).get('/hospitals/1');
     expect(res.statusCode).toEqual(200);

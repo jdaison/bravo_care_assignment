@@ -1,4 +1,5 @@
 const { Hospital } = require('../../models');
+const validator = require('../utils/validators/hospital');
 
 module.exports = {
   createHospital: async (req, res) => {
@@ -38,6 +39,10 @@ module.exports = {
 
   updateHospitalById: async (req, res) => {
     try {
+      const result = validator.update(req.body);
+      if (result.error) {
+        throw new Error(result.error);
+      }
       const { id } = req.params;
       const [updated] = await Hospital.update(req.body, {
         where: { id },
